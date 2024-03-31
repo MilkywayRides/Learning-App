@@ -27,11 +27,6 @@ export default function RootLayout({
         <body className={inter.className}>
           <ConfettiProvider />
           <ToastProvider />
-          <SearchPage 
-            searchParams={{
-            title: "",
-            categoryId: "",}}
-            />
           {children}
         </body>
       </html>
