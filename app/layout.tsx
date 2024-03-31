@@ -6,7 +6,7 @@ import { ToastProvider } from '@/components/providers/toaster-provider'
 import { ConfettiProvider } from '@/components/providers/confetti-provider'
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { SearchPage } from "app/(dashboard)/(routes)/search/page"
+import { SearchPage } from "../app/(dashboard)/(routes)/search/page"
 
 const inter = Inter({ subsets: ['latin'] })
 
