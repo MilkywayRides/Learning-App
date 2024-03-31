@@ -29,9 +29,8 @@ export default function RootLayout({
           <ToastProvider />
           <SearchPage 
             searchParams={{
-            title: "", // Default title if no search term is provided
-            categoryId: "", // Default category ID if no category is selected
-            }}
+            title: "",
+            categoryId: "",}}
             />
           {children}
         </body>
