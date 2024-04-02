@@ -11,7 +11,7 @@ export default async function Dashboard() {
   const { userId } = auth();
 
   if (!userId) {
-    return redirect("/search");
+    return redirect("/");
   }
 
   const {
