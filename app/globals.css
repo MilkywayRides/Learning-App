@@ -86,4 +86,8 @@ body,
   font-size: 16px !important;
 }
 
+.cl-internal-uyu30o{
+  display: none !important;
+}
+
 @import "~@uploadthing/react/styles.css"
