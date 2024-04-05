@@ -18,7 +18,7 @@ export const CourseNavbar = ({
   progressCount,
 }: CourseNavbarProps) => {
   return (
-    <div className="border-b backdrop-blur-md bg-opacity-75 h-4/6 flex items-center bg-white shadow-sm">
+    <div className="mx-3 border-b backdrop-blur-md bg-opacity-75 h-4/6 flex items-center bg-white shadow-sm">
       <CourseMobileSidebar
         course={course}
         progressCount={progressCount}
