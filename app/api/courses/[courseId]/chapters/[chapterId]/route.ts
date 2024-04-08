@@ -1,4 +1,4 @@
-import { Video } from "@mux/mux-node";
+import Video from "@mux/mux-node"
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
