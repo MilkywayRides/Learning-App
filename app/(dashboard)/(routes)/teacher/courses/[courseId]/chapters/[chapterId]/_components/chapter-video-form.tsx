@@ -1,12 +1,10 @@
-"use client";
-
 import * as z from "zod";
 import axios from "axios";
 import MuxPlayer from "@mux/mux-player-react";
 import { Pencil, PlusCircle, Video } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router"; // Changed from next/navigation to next/router
 import { Chapter, MuxData } from "@prisma/client";
 import Image from "next/image";
 
@@ -39,7 +37,7 @@ export const ChapterVideoForm = ({
       await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
       toast.success("Chapter updated");
       toggleEdit();
-      router.refresh();
+      router.replace(router.asPath); // Changed from router.refresh() to router.replace(router.asPath)
     } catch {
       toast.error("Something went wrong");
     }
@@ -91,13 +89,13 @@ export const ChapterVideoForm = ({
             }}
           />
           <div className="text-xs text-muted-foreground mt-4">
-           Upload this chapter&apos;s video
+            Upload this chapter&apos;s video
           </div>
         </div>
       )}
       {initialData.videoUrl && !isEditing && (
         <div className="text-xs text-muted-foreground mt-2">
-          Videos can take a few minutes to process. Refresh the page if video does not appear.
+          Videos can take a few minutes to process. Refresh the page if the video does not appear.
         </div>
       )}
     </div>
