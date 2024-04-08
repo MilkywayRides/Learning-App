@@ -32,6 +32,10 @@ export const NavbarRoutes = () => {
     setIsProfilePicLoaded(true);
   }, []);
 
+  function setTheme(arg0: string): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <>
       {isSearchPage && (
@@ -91,8 +95,8 @@ export const NavbarRoutes = () => {
                 <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem>Light</DropdownMenuItem>
-                    <DropdownMenuItem>Dark</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>System Default</DropdownMenuItem>
                   </DropdownMenuSubContent>
