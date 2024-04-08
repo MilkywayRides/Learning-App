@@ -1,5 +1,3 @@
-"use client";
-
 import * as z from "zod";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router"; // Changed from next/navigation to next/router
 import { Course } from "@prisma/client";
 import React from "react";
 
@@ -58,7 +56,7 @@ export const CategoryForm = ({
       await axios.patch(`/api/courses/${courseId}`, values);
       toast.success("Course updated");
       toggleEdit();
-      router.refresh();
+      router.replace(router.asPath); // Changed from router.refresh() to router.replace(router.asPath)
     } catch {
       toast.error("Something went wrong");
     }
@@ -102,7 +100,7 @@ export const CategoryForm = ({
                 <FormItem>
                   <FormControl>
                     <Combobox
-                      options={...options}
+                      options={options} // Removed spread operator
                       {...field}
                     />
                   </FormControl>
