@@ -5,6 +5,7 @@ import { getAnalytics } from "@/actions/get-analytics";
 
 import { DataCard } from "./_components/data-card";
 import { Chart } from "./_components/chart";
+import React from "react";
 
 const AnalyticsPage = async () => {
   const { userId } = auth();

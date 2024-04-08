@@ -4,6 +4,7 @@ import { LucideIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
+import React from "react";
 
 interface SidebarItemProps {
   icon: LucideIcon;
@@ -33,11 +34,11 @@ export const SidebarItem = ({
       onClick={onClick}
       type="button"
       className={cn(
-        "mx-1 my-0.5 flex rounded-md items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20",
-        isActive && " text-sky-700 bg-sky-200/20 hover:bg-sky-200/20 hover:text-sky-700"
+        "mx-3 my-0.5 flex rounded-md items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20",
+        isActive && " text-sky-700 bg-[#f0fdfa] hover:bg-sky-200/20 hover:text-sky-700"
       )}
     >
-      <div className="flex items-center gap-x-2 py-4">
+      <div className="flex items-center gap-x-2 py-3">
         <Icon
           size={22}
           className={cn(

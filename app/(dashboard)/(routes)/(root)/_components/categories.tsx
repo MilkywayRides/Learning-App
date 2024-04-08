@@ -13,6 +13,7 @@ import {
 import { IconType } from "react-icons";
 
 import { CategoryItem } from "./category-item";
+import React from "react";
 
 interface CategoriesProps {
   items: Category[];

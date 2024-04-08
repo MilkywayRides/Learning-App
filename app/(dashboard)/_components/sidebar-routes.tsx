@@ -1,20 +1,26 @@
 "use client";
 
-import { BarChart, Compass, LayoutDashboard, List, Users, Radio, Bot, Newspaper } from "lucide-react";
+import { BarChart, Compass, LayoutDashboard, List, Users, Radio, Bot, Newspaper, FileMinus, User } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { SidebarItem } from "./sidebar-item";
+import React from "react";
 
 const guestRoutes = [
   {
-    icon: LayoutDashboard,
-    label: "Dashboard",
+    icon: Compass,
+    label: "Courses",
     href: "/",
   },
   {
-    icon: Compass,
-    label: "Browse",
+    icon: LayoutDashboard,
+    label: "Dashboard",
     href: "/search",
+  },
+  {
+    icon: FileMinus,
+    label: "Blogs",
+    href: "/teacher/blogs",
   },
   {
     icon: Users,
@@ -40,9 +46,19 @@ const teacherRoutes = [
     href: "/teacher/courses",
   },
   {
+    icon: FileMinus,
+    label: "Blogs",
+    href: "/teacher/blogs",
+  },
+  {
     icon: BarChart,
     label: "Analytics",
     href: "/teacher/analytics",
+  },
+  {
+    icon: User,
+    label: "Users",
+    href: "/teacher/users",
   },
   {
     icon: Newspaper,
@@ -55,6 +71,7 @@ const teacherRoutes = [
     href: "/teacher/c",
   },
 ]
+
 
 export const SidebarRoutes = () => {
   const pathname = usePathname();
