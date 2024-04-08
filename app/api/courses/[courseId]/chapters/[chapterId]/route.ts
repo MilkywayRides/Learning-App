@@ -14,7 +14,7 @@ export async function DELETE(
   { params }: { params: { courseId: string; chapterId: string } }
 ) {
   try {
-    const { userId } = auth();
+    const { userId } = auth(req);
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -83,7 +83,7 @@ export async function DELETE(
       });
     }
 
-    return NextResponse.json(deletedChapter);
+    return new NextResponse(JSON.stringify(deletedChapter), { status: 200, headers: { "Content-Type": "application/json" } });
   } catch (error) {
     console.log("[CHAPTER_ID_DELETE]", error);
     return new NextResponse("Internal Error", { status: 500 });
@@ -95,7 +95,7 @@ export async function PATCH(
   { params }: { params: { courseId: string; chapterId: string } }
 ) {
   try {
-    const { userId } = auth();
+    const { userId } = auth(req);
     const { isPublished, ...values } = await req.json();
 
     if (!userId) {
@@ -154,7 +154,7 @@ export async function PATCH(
       });
     }
 
-    return NextResponse.json(chapter);
+    return new NextResponse(JSON.stringify(chapter), { status: 200, headers: { "Content-Type": "application/json" } });
   } catch (error) {
     console.log("[COURSES_CHAPTER_ID]", error);
     return new NextResponse("Internal Error", { status: 500 }); 
