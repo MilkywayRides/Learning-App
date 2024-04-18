@@ -1,14 +1,14 @@
+// app/api/courses/[courseId]/unpublish/route.ts
+
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
-export async function PATCH(
-  req: Request,
-  { params }: { params: { courseId: string } }
-) {
+export async function PATCH(req: Request, { params }: { params: { courseId: string } }) {
   try {
     const { userId } = auth();
+    const { courseId } = params;
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -37,7 +37,4 @@ export async function PATCH(
 
     return NextResponse.json(unpublishedCourse);
   } catch (error) {
-    console.log("[COURSE_ID_UNPUBLISH]", error);
-    return new NextResponse("Internal Error", { status: 500 });
-  } 
-}
+    console.log("[COURSE_ID_UNPUBLISH]", error
