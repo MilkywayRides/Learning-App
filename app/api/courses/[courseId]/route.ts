@@ -57,10 +57,7 @@ export async function DELETE(
   }
 }
 
-export async function PATCH(
-  req: Request,
-  { params }: { params: { courseId: string } }
-) {
+export async function PATCH(req: Request, { params }: { params: { courseId: string } }) {
   try {
     const { userId } = auth();
     const { courseId } = params;
@@ -82,7 +79,7 @@ export async function PATCH(
 
     return NextResponse.json(course);
   } catch (error) {
-    console.log("[COURSE_ID]", error);
+    console.log("[COURSE_ID_UPDATE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
