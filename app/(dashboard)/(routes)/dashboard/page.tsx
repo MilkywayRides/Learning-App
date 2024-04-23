@@ -5,7 +5,7 @@ import { CheckCircle, Clock } from "lucide-react";
 import { getDashboardCourses } from "@/actions/get-dashboard-courses";
 import { CoursesList } from "@/components/courses-list";
 
-import { InfoCard } from "../search/_components/info-card";
+import { InfoCard } from "./_components/info-card";
 import React from "react";
 
 export default async function Dashboard() {
@@ -21,7 +21,7 @@ export default async function Dashboard() {
   } = await getDashboardCourses(userId);
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="p-6 space-y-4 dark:text-[#ffffff]">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
        <InfoCard
           icon={Clock}

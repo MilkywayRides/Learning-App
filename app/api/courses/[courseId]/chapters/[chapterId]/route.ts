@@ -1,10 +1,10 @@
-import Video from "@mux/mux-node"
+import Mux from "@mux/mux-node";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
-const muxClient = new Mux(
+const { Video } = new Mux(
   process.env.MUX_TOKEN_ID!,
   process.env.MUX_TOKEN_SECRET!,
 );
@@ -14,7 +14,7 @@ export async function DELETE(
   { params }: { params: { courseId: string; chapterId: string } }
 ) {
   try {
-    const { userId } = auth(req);
+    const { userId } = auth();
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -50,7 +50,7 @@ export async function DELETE(
       });
 
       if (existingMuxData) {
-        await muxClient.Video.Assets.del(existingMuxData.assetId);
+        await Video.Assets.del(existingMuxData.assetId);
         await db.muxData.delete({
           where: {
             id: existingMuxData.id,
@@ -83,7 +83,7 @@ export async function DELETE(
       });
     }
 
-    return new NextResponse(JSON.stringify(deletedChapter), { status: 200, headers: { "Content-Type": "application/json" } });
+    return NextResponse.json(deletedChapter);
   } catch (error) {
     console.log("[CHAPTER_ID_DELETE]", error);
     return new NextResponse("Internal Error", { status: 500 });
@@ -95,7 +95,7 @@ export async function PATCH(
   { params }: { params: { courseId: string; chapterId: string } }
 ) {
   try {
-    const { userId } = auth(req);
+    const { userId } = auth();
     const { isPublished, ...values } = await req.json();
 
     if (!userId) {
@@ -131,7 +131,7 @@ export async function PATCH(
       });
 
       if (existingMuxData) {
-        await muxClient.Video.Assets.del(existingMuxData.assetId);
+        await Video.Assets.del(existingMuxData.assetId);
         await db.muxData.delete({
           where: {
             id: existingMuxData.id,
@@ -139,7 +139,7 @@ export async function PATCH(
         });
       }
 
-      const asset = await muxClient.Video.Assets.create({
+      const asset = await Video.Assets.create({
         input: values.videoUrl,
         playback_policy: "public",
         test: false,
@@ -154,7 +154,7 @@ export async function PATCH(
       });
     }
 
-    return new NextResponse(JSON.stringify(chapter), { status: 200, headers: { "Content-Type": "application/json" } });
+    return NextResponse.json(chapter);
   } catch (error) {
     console.log("[COURSES_CHAPTER_ID]", error);
     return new NextResponse("Internal Error", { status: 500 }); 

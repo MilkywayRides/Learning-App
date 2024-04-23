@@ -15,7 +15,7 @@ const guestRoutes = [
   {
     icon: LayoutDashboard,
     label: "Dashboard",
-    href: "/search",
+    href: "/dashboard",
   },
   {
     icon: FileMinus,

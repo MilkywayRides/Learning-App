@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 
 export const Sidebar = () => {
   return (
-    <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm relative">
+    <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm relative dark:bg-[#0c0a09]">
       <div className="px-6 py-2">
         <Logo />
       </div>

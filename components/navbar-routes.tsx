@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from 'react'; // Import useEffect and useState hooks
-
-import { UserButton, useAuth } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from 'react';
+import { useAuth, useUser, UserButton, useClerk } from "@clerk/nextjs";
+import { usePathname, useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
@@ -13,14 +12,18 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLab
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { isTeacher } from "@/lib/teacher";
-
+import { useTheme } from 'next-themes';
 import { SearchInput } from "./search-input";
 
 export const NavbarRoutes = () => {
   const { userId } = useAuth();
   const pathname = usePathname();
-  
-  // State to track whether profile pic loaded or not
+  const { signOut } = useClerk();
+  const router = useRouter();
+
+  const { setTheme } = useTheme();
+
+
   const [isProfilePicLoaded, setIsProfilePicLoaded] = useState(false);
 
   const isTeacherPage = pathname?.startsWith("/teacher");
@@ -28,13 +31,11 @@ export const NavbarRoutes = () => {
   const isSearchPage = pathname === "/";
 
   useEffect(() => {
-    // When the component mounts, set profile pic loaded to true
     setIsProfilePicLoaded(true);
   }, []);
 
-  function setTheme(arg0: string): void {
-    throw new Error('Function not implemented.');
-  }
+
+  const { user, isSignedIn } = useUser();
 
   return (
     <>
@@ -62,18 +63,18 @@ export const NavbarRoutes = () => {
         ) : null}
         <DropdownMenu>
           <DropdownMenuTrigger>
-            {/* Conditional rendering of Skeleton based on profile picture load state */}
-            {!isProfilePicLoaded && (
-              <Skeleton className="h-8 w-8 rounded-full">
+            {!isProfilePicLoaded ? (
+              <Skeleton className="w-8 h-8 rounded-full">
                 <span className="z-[100]">
                   <UserButton afterSignOutUrl="/" />
                 </span>
               </Skeleton>
+            ) : (
+              <UserButton afterSignOutUrl="/" />
             )}
-            {isProfilePicLoaded && <UserButton afterSignOutUrl="/" />}
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            {isSignedIn && <DropdownMenuLabel className="text-md/[17px]">{user.fullName}</DropdownMenuLabel>}
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem disabled>
@@ -95,19 +96,21 @@ export const NavbarRoutes = () => {
                 <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
                     <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>System Default</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("system")}>System Default</DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
               </DropdownMenuSub>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>YouTube</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => window.open('https://www.youtube.com', '_blank')}>
+              YouTube
+            </DropdownMenuItem>
             <DropdownMenuItem disabled>API</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className='text-[#ef4444]'>
+            <DropdownMenuItem className="text-[#ef4444]">
               Log out
               <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
             </DropdownMenuItem>
