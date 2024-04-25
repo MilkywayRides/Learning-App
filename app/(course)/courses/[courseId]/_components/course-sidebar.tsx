@@ -36,7 +36,7 @@ export const CourseSidebar = async ({
   });
 
   return (
-    <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
+    <div className="h-full border-r flex flex-col overflow-y-auto dark:bg-[#0c0a09] shadow-sm">
       <div className="p-5 flex flex-col">
         <h1 className="font-semibold truncate w-90">
           {course.title}
