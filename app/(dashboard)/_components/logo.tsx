@@ -2,22 +2,23 @@ import Image from "next/image";
 
 export const Logo = () => {
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div style={{ marginRight: "10px" }}>
-        <svg
-          version="1.0"
-          xmlns="http://www.w3.org/2000/svg"
-          width="30pt"
-          height="30pt"
-          viewBox="0 0 399.000000 660.000000"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <g
-            transform="translate(0.000000,499.000000) scale(0.100000,-0.100000)"
-            fill="#000000"
-            stroke="none"
+    <div>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div className="bg-white rounded-lg" style={{ marginRight: "10px" }}>
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="30pt"
+            height="30pt"
+            viewBox="0 0 399.000000 660.000000"
+            preserveAspectRatio="xMidYMid meet"
           >
-            <path d="M151 2760 c-70 -5 -106 -12 -112 -21 -24 -38 2 -48 106 -38 50 4 145
+            <g
+              transform="translate(0.000000,499.000000) scale(0.100000,-0.100000)"
+              fill="#000000"
+              stroke="none"
+            >
+              <path d="M151 2760 c-70 -5 -106 -12 -112 -21 -24 -38 2 -48 106 -38 50 4 145
               8 211 8 103 1 123 4 128 17 14 35 -12 44 -123 43 -58 -1 -153 -5 -210 -9z"/>
               <path d="M717 2743 c-4 -3 -7 -14 -7 -24 0 -22 -4 -21 229 -49 208 -24 439
               -65 648 -115 79 -19 150 -32 158 -29 23 9 18 43 -8 53 -13 5 -107 27 -208 50
@@ -50,10 +51,11 @@ export const Logo = () => {
               71 44 -8 20 -114 22 -160 2z"/>
               <path d="M3723 94 c-13 -34 14 -39 225 -42 167 -3 211 -1 226 11 12 9 17 20
               13 31 -6 14 -32 16 -232 16 -196 0 -226 -2 -232 -16z"/>
-          </g>
-        </svg>
+            </g>
+          </svg>
+        </div>
+        <h1 className="" style={{ margin: 0, fontWeight: "bold", fontFamily: "cursive" }}>Milkyway Rides</h1>
       </div>
-      <h1 className="" style={{ margin: 0, fontWeight: "bold", fontFamily: "cursive" }}>Milkyway Rides</h1>
     </div>
   );
 };

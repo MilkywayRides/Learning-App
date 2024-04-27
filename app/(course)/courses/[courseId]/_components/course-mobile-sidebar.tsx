@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Equal, Menu } from "lucide-react";
 import { Chapter, Course, UserProgress } from "@prisma/client";
 
 import {
@@ -25,7 +25,7 @@ export const CourseMobileSidebar = ({
   return (
     <Sheet>
       <SheetTrigger className="md:hidden pr-4 hover:opacity-75 transition">
-        <Menu />
+        <Equal />
       </SheetTrigger>
       <SheetContent side="left" className="p-0 bg-white w-72">
         <CourseSidebar

@@ -44,6 +44,7 @@ const SearchPage = async ({
         <Categories
           items={categories}
         />
+        {/* <BannerAd /> */}
         <CoursesList items={courses} />
       </div>
     </>

@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useRouter } from "next/router"; // Changed from next/navigation to next/router
+import { useRouter } from "next/navigation"; // Changed from next/navigation to next/router
 import { Course } from "@prisma/client";
 import React from "react";
 
@@ -58,16 +58,16 @@ export const CategoryForm = ({
       await axios.patch(`/api/courses/${courseId}`, values);
       toast.success("Course updated");
       toggleEdit();
-      router.replace(router.asPath); // Changed from router.refresh() to router.replace(router.asPath)
+      await router.refresh();
     } catch {
       toast.error("Something went wrong");
-    }
+    }    
   }
 
   const selectedOption = options.find((option) => option.value === initialData.categoryId);
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="mt-6 border bg-slate-100 rounded-md p-4 dark:bg-[#262626]">
       <div className="font-medium flex items-center justify-between">
         Course category
         <Button onClick={toggleEdit} variant="ghost">
